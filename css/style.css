@@ -1,0 +1,204 @@
+*{margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.card-border{
+	border: solid 10px white;
+	border-radius: 20px;
+	overflow: hidden;
+	transition: all ease-out 0.2s;
+}
+
+.card-border:hover{
+	transform: scale(1.05);
+	}
+
+
+.alineacion{
+	display: flex;
+	justify-items: center;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+}
+
+
+.map-container-2{
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+}
+.map-container-2iframe{
+  left:0;
+  top:0;
+  height:100vh;
+  width:100%;
+  position:absolute;
+}
+
+.link { color: yellow; }
+
+.videito{ width: 100%;
+	height:	60vh;
+}
+
+.full{ width: 100%;
+	height:	100%;
+}
+
+
+.cartAmount{
+	font-size: 10px;
+	color: white;
+	position: absolute;
+	top: -5px;
+	right: -10px;
+	padding: 3px;
+	border-radius: 100px;
+}
+
+.shop{
+	gap: 30px;
+	justify-content: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.item{
+	border: 2px solid black;
+	border-radius: 4px;
+}
+
+.details{
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	gap: 10px;
+}
+
+.price-quantity{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+.buttons{
+	display: flex;
+	flex-direction: row;
+	gap: 8px;
+	font-size: 16px;
+	justify-content: center;
+	font-size: 26px;
+}
+
+.bi-dash-square{
+	color: darkred;
+}
+
+.bi-plus-square{
+	color: darkgreen;
+}
+
+#carrito{
+	height: 20px;
+	width: 20px;
+	color: white;
+	padding: 5px;
+	position: relative;
+	margin-right: 5px;
+}
+
+#local{
+	background: url(../images/local.jpg);
+	color: white;
+	width: 100%;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: bebas ;
+	}
+
+#footer{
+	background-color: black;
+	color: yellow;
+	font-family: bebas ;
+	}
+
+
+#imgcar{
+	width: 100%;
+	height: 95vh;
+}
+
+#nosotros{
+	width: 100%;
+	background: url(../images/fondo.jpg);
+	background-size: cover;
+	color: white;
+	background-repeat: no-repeat;
+	font-family: bebas ;
+}
+
+#navbar{
+	font-family: bebas ;
+	}
+
+#navbarcarrito{
+	font-family: bebas ;
+	margin-bottom: 30px;
+	}
+
+#carouselExampleInterval{
+	width: 100%;
+	height: 95vh;
+	font-family: bebas ;
+}
+
+#catalogo{
+	background: white;
+	background: url(../images/background.jpg);
+	background-repeat: repeat;
+	width: 100%;
+	color: black;
+	font-family: bebas ;
+	align-items: center!important;
+}
+
+
+@media (min-width: 321px) and (max-width: 768px) {
+	.row{
+		margin: 0;
+	}
+    .card{
+    	width: 100%!important;
+    	margin: 0!important;
+
+    }
+  }
+
+/*@media (max-width: 1000px){
+	.shop{
+		grid-template-columns: repeat(2, 223px);
+	}
+
+@media (max-width: 500px){
+	.shop{
+		grid-template-columns: repeat(1, 223px);
+
+	}*/
+
+@font-face{
+	font-family: bebas;
+	src: url(../css/BebasNeue-Regular.ttf);
+	}
+
+@font-face{
+	font-family: ibm;
+	src: url(../css/IBMPlexMono-ExtraLightItalic.ttf);
+	}
+
