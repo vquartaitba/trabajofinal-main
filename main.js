@@ -91,6 +91,8 @@ let increment = (id) => {
   } else {
     search.item += 1;
   }
+   update(selectedItem.id);
+ };
 
 
  let decrement = (id) => {
@@ -101,10 +103,11 @@ let increment = (id) => {
   else {
     search.item -= 1;
   }
+ update(selectedItem.id);
+ };
 
 let update = (id) => {
   let search = basket.find((x) => x.id === id);
-  // console.log(search.item);
   document.getElementById(id).innerHTML = search.item;
   calculation();
 };  
