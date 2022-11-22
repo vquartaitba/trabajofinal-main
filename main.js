@@ -4,37 +4,37 @@ const baseDeDatos = [
         id: 1,
         nombre: 'Big Pons Simple',
         precio: 1500,
-        imagen: 'images/imgcat03.jpg'
+        imagen: 'Images/imgcat03.jpg'
     },
     {
         id: 2,
         nombre: 'Sweet Onion Doble',
         precio: 2000,
-        imagen: 'images/imgcat04.jpg'
+        imagen: 'Images/imgcat04.jpg'
     },
     {
         id: 3,
         nombre: 'Grilled Onion',
         precio: 1800,
-        imagen: 'images/imgcat02.jpg'
+        imagen: 'Images/imgcat02.jpg'
     },
     {
         id: 4,
         nombre: 'Royal Doble',
         precio: 2100,
-        imagen: 'images/imgcat05.jpg'
+        imagen: 'Images/imgcat05.jpg'
     },
     {
         id: 5,
         nombre: 'California doble',
         precio: 2000,
-        imagen: 'images/imgcat06.jpg'
+        imagen: 'Images/imgcat06.jpg'
     },
     {
         id: 6,
         nombre: 'Cheese Burger Triple',
         precio: 1900,
-        imagen: 'images/imgcat01.jpg'
+        imagen: 'Images/imgcat01.jpg'
     },
 ];
 
@@ -72,7 +72,7 @@ function renderizarProductos() {
         miNodoBoton.textContent = 'Comprar';
         miNodoBoton.setAttribute('marcador', info.id);
         miNodoBoton.addEventListener('click', añadirProductoAlCarrito);
-        
+
 
         miNodoCardBody.appendChild(miNodoImagen);
         miNodoCardBody.appendChild(miNodoTitle);

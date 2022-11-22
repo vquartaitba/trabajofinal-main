@@ -97,7 +97,7 @@
 }
 
 #local{
-	background: url(../images/local.jpg);
+	background: url(../Images/local.jpg);
 	color: white;
 	width: 100%;
 	background-position: center;
@@ -120,7 +120,7 @@
 
 #nosotros{
 	width: 100%;
-	background: url(../images/fondo.jpg);
+	background: url(../Images/fondo.jpg);
 	background-size: cover;
 	color: white;
 	background-repeat: no-repeat;
@@ -144,7 +144,7 @@
 
 #catalogo{
 	background: white;
-	background: url(../images/background.jpg);
+	background: url(../Images/background.jpg);
 	background-repeat: repeat;
 	width: 100%;
 	color: black;
@@ -164,16 +164,6 @@
     }
   }
 
-/*@media (max-width: 1000px){
-	.shop{
-		grid-template-columns: repeat(2, 223px);
-	}
-
-@media (max-width: 500px){
-	.shop{
-		grid-template-columns: repeat(1, 223px);
-
-	}*/
 
 @font-face{
 	font-family: bebas;
