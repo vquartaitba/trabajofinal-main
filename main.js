@@ -1,130 +1,178 @@
-let shopItemsData = [
-  {
-    id: "1",
-    name: "Casual Shirt",
-    price: 1500,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/slide02.jpg",
-  },
-  {
-    id: "2",
-    name: "Office Shirt",
-    price: 1500,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/slide02.jpg",
-  },
-  {
-    id: "3",
-    name: "T Shirt",
-    price: 1500,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/slide02.jpg",
-  },
-  {
-    id: "4",
-    name: "T Shirt",
-    price: 1500,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/slide02.jpg",
-  },
-  {
-    id: "5",
-    name: "Card title",
-    price: 1500,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/slide02.jpg",
-  },
-  {
-    id: "6",
-    name: "Card title",
-    price: 1500,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/slide02.jpg",
-  },
+// Variables
+const baseDeDatos = [
+    {
+        id: 1,
+        nombre: 'Big Pons Simple + Papas Fritas',
+        precio: 1500,
+        imagen: 'images/slide02.jpg'
+    },
+    {
+        id: 2,
+        nombre: 'Sweet Onion Doble + Papas Fritas',
+        precio: 2000,
+        imagen: 'images/slide02.jpg'
+    },
+    {
+        id: 3,
+        nombre: 'Grilled Onion + Papas Fritas',
+        precio: 800,
+        imagen: 'images/slide02.jpg'
+    },
+    {
+        id: 4,
+        nombre: 'Royal Doble + Papas Fritas',
+        precio: 1300,
+        imagen: 'images/slide02.jpg'
+    },
+    {
+        id: 5,
+        nombre: 'California doble + Papas fritas',
+        precio: 2000,
+        imagen: 'images/slide02.jpg'
+    },
+    {
+        id: 6,
+        nombre: 'Sweet ´n´ Spicy Doble + Papas fritas',
+        precio: 3000,
+        imagen: 'images/slide02.jpg'
+    },
 ];
 
-let shop = document.getElementById("shop");
+let carrito = [];
+const divisa = '$';
+const DOMitems = document.querySelector('#items');
+const DOMcarrito = document.querySelector('#carrito');
+const DOMtotal = document.querySelector('#total');
+const DOMbotonVaciar = document.querySelector('#boton-vaciar');
+const DOMbotonFinalizar = document.querySelector('#liveToastBtn');
 
-let basket =  [];
+function renderizarProductos() {
+    baseDeDatos.forEach((info) => {
 
-let generateShop = () => {
-  return (shop.innerHTML = shopItemsData
-    .map((x) => {
-      let { id, name, price, desc, img } = x;
-      return `
-      <div class="container">
-      <div class="col">
-      <div class="row">
-    	<div id=product-id-${id} class="card card-border" style="width: 18rem;">
-        <img width="220" src=${img} alt="" class="card-img-top">
-        <div class="card-body">
-          <h3 class="card-title">${name}</h3>
-          <p class="card-text">${desc}</p>
-          <div class="price-quantity">
-            <h2>$ ${price} </h2>
-            <div class="buttons">
-            <i onclick="decrement(${id})" class="bi bi-dash-square"></i>
-			<div id=${id} class="quantity">0</div>
-			<i onclick="increment(${id})" class="bi bi-plus-square"></i>
-          </div>
-          </div>
-        </div>
-      </div>
-      </div>
-      </div>
-      </div>
-    `;
-    })
-    .join(""));
-};
+        const miNodo = document.createElement('div');
+        miNodo.classList.add('card', 'col-sm-5');
 
-generateShop();
+        const miNodoCardBody = document.createElement('div');
+        miNodoCardBody.classList.add('card-body');
 
-let increment = (id) => {
-  let selectedItem = id;
-  let search = basket.find((x) => x.id === selectedItem.id);
+        const miNodoTitle = document.createElement('h5');
+        miNodoTitle.classList.add('card-title');
+        miNodoTitle.textContent = info.nombre;
 
-  if (search === undefined) {
-    basket.push({
-      id: selectedItem.id,
-      item: 1,
+        const miNodoImagen = document.createElement('img');
+        miNodoImagen.classList.add('card-img-top');
+        miNodoImagen.setAttribute('src', info.imagen);
+
+        const miNodoPrecio = document.createElement('p');
+        miNodoPrecio.classList.add('card-text');
+        miNodoPrecio.textContent = `${info.precio}${divisa}`;
+
+        const miNodoBoton = document.createElement('button');
+        miNodoBoton.classList.add('btn', 'btn-primary');
+        miNodoBoton.textContent = '+';
+        miNodoBoton.setAttribute('marcador', info.id);
+        miNodoBoton.addEventListener('click', añadirProductoAlCarrito);
+
+        miNodoCardBody.appendChild(miNodoImagen);
+        miNodoCardBody.appendChild(miNodoTitle);
+        miNodoCardBody.appendChild(miNodoPrecio);
+        miNodoCardBody.appendChild(miNodoBoton);
+        miNodo.appendChild(miNodoCardBody);
+        DOMitems.appendChild(miNodo);
     });
-  } else {
-    search.item += 1;
-  }
-
-  // console.log(basket);
-  update(selectedItem.id);
-  localStorage.setItem("data", JSON.stringify(basket));
-};
+}
 
 
-let decrement = (id) => {
-  let selectedItem = id;
-  let search = basket.find((x) => x.id === selectedItem.id);
+function añadirProductoAlCarrito(evento) {
 
-  if (search === undefined) return;
-  else if (search.item === 0) return;
-  else {
-    search.item -= 1;
-  }
-  update(selectedItem.id);
-  basket = basket.filter((x) => x.item !== 0);
-  // console.log(basket);
-  localStorage.setItem("data", JSON.stringify(basket));
-};
+    carrito.push(evento.target.getAttribute('marcador'))
+
+    renderizarCarrito();
+
+}
 
 
-let update = (id) => {
-  let search = basket.find((x) => x.id === id);
-  // console.log(search.item);
-  document.getElementById(id).innerHTML = search.item;
-  calculation();
-};
+function renderizarCarrito() {
 
-let calculation = () => {
-  let cartIcon = document.getElementById("cartAmount");
-  cartIcon.innerHTML = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
-};
+    DOMcarrito.textContent = '';
 
-calculation();
+    const carritoSinDuplicados = [...new Set(carrito)];
+
+    carritoSinDuplicados.forEach((item) => {
+
+        const miItem = baseDeDatos.filter((itemBaseDatos) => {
+
+            return itemBaseDatos.id === parseInt(item);
+        });
+
+        const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+
+            return itemId === item ? total += 1 : total;
+        }, 0);
+
+        const miNodo = document.createElement('li');
+        miNodo.classList.add('list-group-item', 'text-right', 'mx-2');
+        miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].precio}${divisa}`;
+
+        const miBoton = document.createElement('button');
+        miBoton.classList.add('btn', 'btn-danger', 'mx-5');
+        miBoton.textContent = 'X';
+        miBoton.style.marginLeft = '1rem';
+        miBoton.dataset.item = item;
+        miBoton.addEventListener('click', borrarItemCarrito);
+
+        miNodo.appendChild(miBoton);
+        DOMcarrito.appendChild(miNodo);
+    });
+
+    DOMtotal.textContent = calcularTotal();
+}
+
+
+function borrarItemCarrito(evento) {
+
+    const id = evento.target.dataset.item;
+
+    carrito = carrito.filter((carritoId) => {
+        return carritoId !== id;
+    });
+
+    renderizarCarrito();
+}
+
+function calcularTotal() {
+
+    return carrito.reduce((total, item) => {
+
+        const miItem = baseDeDatos.filter((itemBaseDatos) => {
+            return itemBaseDatos.id === parseInt(item);
+        });
+
+        return total + miItem[0].precio;
+    }, 0).toFixed(2);
+}
+
+
+function vaciarCarrito() {
+
+    carrito = [];
+
+    renderizarCarrito();
+}
+
+function finalizarCompra() {
+
+    carrito = [];
+    total= 0;
+    renderizarCarrito();
+}
+
+DOMbotonVaciar.addEventListener('click', vaciarCarrito);
+DOMbotonFinalizar.addEventListener('click', finalizarCompra);
+
+
+renderizarProductos();
+renderizarCarrito();
+
+
+
